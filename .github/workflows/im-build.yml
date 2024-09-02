@@ -8,12 +8,12 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    
+
     services:
       # Label used to access the service container
       postgres:
-        image: postgres:11
-        env: 
+        image: postgres:13
+        env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         options: >-
