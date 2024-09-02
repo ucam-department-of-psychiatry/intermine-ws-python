@@ -34,12 +34,16 @@ jobs:
         python-version: '3.10'
     - name: Install dependencies
       run: |
+        set -euxo pipefail
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Install PostgreSQL client
       run: |
+        set -euxo pipefail
         sudo apt-get update -y
         sudo apt-get install -y libpq-dev postgresql-client
         sudo service postgresql start
     - name: Run unit tests
-      run: ./config/ci/init-solr.sh && ./config/ci/init.sh && python setup.py test && python setup.py livetest
+      run: |
+        set -euxo pipefail
+        ./config/ci/init-solr.sh && ./config/ci/init.sh && python setup.py test && python setup.py livetest
